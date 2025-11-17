@@ -90,9 +90,9 @@ classDiagram
 ```mermaid
 flowchart TD
     A[Start] --> B[Prompt user for n]
-    B --> C[Compute F(n)]
-    C --> D[Apply ++ operator for F(n+1)]
-    D --> E[Apply +m operator for F(n+m)]
+    B --> C[Compute F of n]
+    C --> D[Apply increment operator for next Fibonacci]
+    D --> E[Apply add-m operator for mth Fibonacci]
     E --> F[Print results]
     F --> G[End]
 ```
@@ -112,6 +112,7 @@ flowchart TD
     F --> G[Print success message]
     G --> H[End]
 ```
+
 
 
 
