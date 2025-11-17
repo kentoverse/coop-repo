@@ -1,24 +1,26 @@
 
 ⸻
 
-Assignment 2 – Design Documentation
+# Assignment 2 – Design Documentation
 
 ⸻
 
-Q1 – Customer LINQ Mini App
+## Q1 – Customer LINQ Mini App
 
-Class Diagram
+### Class Diagram
 
-Customer
-	•	Properties:
-	•	Id : int
-	•	FirstName : string
-	•	LastName : string
-	•	DateOfBirth : DateTime
-	•	Methods:
-	•	ToString() : string
+```mermaid
+classDiagram
+    class Fibonacci {
+        +int Position
+        +int Value
+        +ComputeValue() : int
+        +++() : Fibonacci
+        ++(int m) : Fibonacci
+    }
+```
 
-Flowchart
+### Flowchart
 
 ```mermaid
 flowchart TD
@@ -27,11 +29,11 @@ flowchart TD
     C -->|list| D[Print all customers]
     C -->|findbyid| E[Search by Id]
     E --> F{Found?}
-    F -->|Yes| G[Print first & last name]
-    F -->|No| H[Print "Customer doesn't exist"]
+    F -->|Yes| G[Print first and last name]
+    F -->|No| H[Customer does not exist]
     C -->|findbyfirstname| I[Search by FirstName]
     I --> J[Print DateOfBirth]
-    C -->|sortbyfirstname| K[Sort by FirstName & print list]
+    C -->|sortbyfirstname| K[Sort by FirstName and print list]
     C -->|exit| L[End]
 ```
 
@@ -131,3 +133,4 @@ Notes:
 	•	Each Q folder (Q1–Q4) can reference these diagrams in your submission.
 
 ⸻
+
