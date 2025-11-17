@@ -25,7 +25,6 @@ are available on GitHub:
 
 ---
 
-
 ## Project 2 – ATM Teller Simulation
 
 Programming Techniques (CA-PRTQS)
@@ -660,13 +659,90 @@ flowchart TD
 
 ⸻
 
+## Logic Folder (_logic) Draft
+
+### 1️⃣ Class-Method Relationships
+
+Class-Method Relationships
+
+| Class           | Properties                               | Methods                          | Inheritance | Notes                                |
+|-----------------|-----------------------------------------|----------------------------------|-------------|--------------------------------------|
+| Account         | AccountNumber, CustomerID, Balance       | Deposit(), Withdraw(), ToString()| Base        | Abstract base class                  |
+| CheckingAccount | —                                       | —                                | Account     | Derived class                        |
+| SavingsAccount  | —                                       | —                                | Account     | Derived class                        |
+| Customer        | CustomerID, FirstName, LastName, PIN    | —                                | —           | Holds customer info                   |
+| Bank            | List<Account>, List<Customer>           | FindAccount(), LoadFromFiles()   | —           | Collection handler & SQL fallback    |
+| ATMService      | CurrentAccount                           | ShowMenu(), ProcessTransaction() | —           | Handles input/output and menu logic  |       |
 
 
-👨‍💻 Author
+### 2️⃣ Flowcharts
+
+```mermaid
+    flowchart TD
+    A[Start] --> B[Prompt user for account number and PIN]
+    B --> C{Account exists?}
+    C -->|Yes| D[Set CurrentAccount and show menu]
+    C -->|No| E[Display "Account not found" and retry]
+    D --> F[User selects action: Deposit, Withdraw, Check Balance, Exit]
+    F -->|Deposit| G[Prompt for amount and call Deposit()]
+    F -->|Withdraw| H[Prompt for amount and call Withdraw()]
+    F -->|Check Balance| I[Display CurrentAccount balance]
+    F -->|Exit| J[End Session]
+    G --> D
+    H --> D
+    I --> DU
+```
+
+### 2️⃣ Deposit & Withdraw Logic
+
+```mermaid
+   flowchart TD
+    A[Start Transaction] --> B[Prompt user for amount]
+    B --> C{Amount valid?}
+    C -->|Yes| D[Deposit/Withdraw amount]
+    C -->|No| E[Show error message]
+    D --> F[Update account balance]
+    F --> G[Return to main menu]
+    E --> G
+```
+
+### 2️⃣ Pseudocode
+
+WHILE CurrentAccount NOT selected
+    PROMPT user for AccountNumber and PIN
+    IF account exists in Bank
+        SET CurrentAccount
+    ELSE
+        DISPLAY "Account not found"
+LOOP
+
+WHILE user has not exited
+    DISPLAY menu: Deposit, Withdraw, Check Balance, Exit
+    GET user selection
+    IF Deposit selected
+        PROMPT for amount
+        IF amount > 0
+            CurrentAccount.Deposit(amount)
+        ELSE
+            DISPLAY error
+    ELSE IF Withdraw selected
+        PROMPT for amount
+        IF amount > 0 AND amount <= CurrentAccount.Balance
+            CurrentAccount.Withdraw(amount)
+        ELSE
+            DISPLAY error
+    ELSE IF Check Balance
+        DISPLAY CurrentAccount.Balance
+    ELSE IF Exit
+        END session
+
+---
+---
+
+#### 👨‍💻 Author
 
 Marc Cavada
 Programming Fundamentals – CDI College
 Project: CA_PRFND – Inventory Management System
 
 ✅ This version is **GitHub-ready**:  
- 
